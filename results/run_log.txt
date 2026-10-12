@@ -1,0 +1,56 @@
+pairs: 240  | numeric features in E: 24
+                features                       model   rmse    mae   n  oos_r2_vs_0.500
+           E all numeric                       Ridge 0.0641 0.0519 150           0.4023
+           E all numeric                   GradBoost 0.0647 0.0517 150           0.3911
+           E all numeric                       Lasso 0.0649 0.0521 150           0.3876
+D skill + payroll + win%                       Ridge 0.0651 0.0537 150           0.3827
+           E all numeric                RandomForest 0.0652 0.0516 150           0.3812
+         C skill metrics                       Ridge 0.0655 0.0541 150           0.3758
+D skill + payroll + win%                       Lasso 0.0655 0.0541 150           0.3750
+         C skill metrics                         OLS 0.0657 0.0545 150           0.3725
+         C skill metrics                       Lasso 0.0657 0.0545 150           0.3721
+             A win% only                         OLS 0.0659 0.0535 150           0.3676
+D skill + payroll + win%                         OLS 0.0659 0.0547 150           0.3675
+         C skill metrics                   GradBoost 0.0661 0.0530 150           0.3645
+        B win% + payroll                       Lasso 0.0661 0.0536 150           0.3639
+D skill + payroll + win%                RandomForest 0.0661 0.0540 150           0.3635
+        B win% + payroll                         OLS 0.0662 0.0539 150           0.3621
+        B win% + payroll                       Ridge 0.0663 0.0539 150           0.3601
+D skill + payroll + win%                   GradBoost 0.0664 0.0541 150           0.3582
+         C skill metrics                RandomForest 0.0666 0.0546 150           0.3541
+           E all numeric                         OLS 0.0678 0.0547 150           0.3310
+        B win% + payroll                RandomForest 0.0687 0.0553 150           0.3135
+        B win% + payroll                   GradBoost 0.0691 0.0562 150           0.3046
+                    none Benchmark: last year's win% 0.0737 0.0589 150           0.2095
+                    none            Benchmark: 0.500 0.0829 0.0658 150           0.0000
+
+Paired team-cluster bootstrap (RMSE difference, negative = model better):
+    model                 features                      versus  rmse_diff   ci_lo   ci_hi
+    Ridge            E all numeric Benchmark: last year's win%    -0.0096 -0.0147 -0.0043
+    Ridge            E all numeric            Benchmark: 0.500    -0.0188 -0.0275 -0.0102
+    Ridge            E all numeric                         OLS    -0.0018 -0.0044  0.0009
+    Ridge D skill + payroll + win% Benchmark: last year's win%    -0.0086 -0.0131 -0.0037
+    Ridge D skill + payroll + win%            Benchmark: 0.500    -0.0178 -0.0261 -0.0095
+    Ridge D skill + payroll + win%                         OLS    -0.0008 -0.0027  0.0011
+    Ridge          C skill metrics Benchmark: last year's win%    -0.0082 -0.0133 -0.0029
+    Ridge          C skill metrics            Benchmark: 0.500    -0.0174 -0.0257 -0.0091
+    Ridge          C skill metrics                         OLS    -0.0004 -0.0030  0.0021
+      OLS         B win% + payroll Benchmark: last year's win%    -0.0075 -0.0119 -0.0028
+      OLS         B win% + payroll            Benchmark: 0.500    -0.0167 -0.0246 -0.0084
+      OLS         B win% + payroll                         OLS     0.0003 -0.0002  0.0007
+GradBoost D skill + payroll + win% Benchmark: last year's win%    -0.0073 -0.0123 -0.0024
+GradBoost D skill + payroll + win%            Benchmark: 0.500    -0.0165 -0.0255 -0.0070
+GradBoost D skill + payroll + win%                         OLS     0.0005 -0.0026  0.0035
+GradBoost            E all numeric Benchmark: last year's win%    -0.0090 -0.0145 -0.0036
+GradBoost            E all numeric            Benchmark: 0.500    -0.0182 -0.0270 -0.0094
+GradBoost            E all numeric                         OLS    -0.0012 -0.0041  0.0018
+
+In-sample importance (set D):
+            ridge_std_coef  gb_perm_importance
+DEF                0.0095              0.0541
+FIP               -0.0101              0.0982
+ISO                0.0090              0.0641
+WinPct             0.0122              0.1407
+lnPayroll         -0.0010              0.0519
+xERA              -0.0130              0.1003
+xwOBA              0.0080              0.0617
